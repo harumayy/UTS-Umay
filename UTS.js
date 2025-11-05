@@ -70,9 +70,6 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener('scroll', revealOnScroll);
 });
 
-// =============================
-// LIVE CLOCK
-// =============================
 function updateClock() {
   const now = new Date();
   const timeString = now.toLocaleTimeString('id-ID', { hour12: false });
@@ -82,9 +79,6 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-// =============================
-// STATISTIK PENGUNJUNG
-// =============================
 let visitCount = localStorage.getItem('visitCount');
 if (!visitCount) {
   visitCount = 1;
@@ -95,15 +89,40 @@ localStorage.setItem('visitCount', visitCount);
 const visitDisplay = document.getElementById('visit-count');
 if (visitDisplay) visitDisplay.textContent = visitCount;
 
-// =============================
-// TOGGLE SIDEBAR
-// =============================
-const sidebar = document.getElementById('sidebar');
-const toggleBtn = document.getElementById('toggle-sidebar');
+document.addEventListener("DOMContentLoaded", () => {
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('toggle-sidebar');
 
-if (sidebar && toggleBtn) {
-  toggleBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('collapsed');
-    toggleBtn.textContent = sidebar.classList.contains('collapsed') ? '❯' : '❮';
-  });
+  if (sidebar && toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('expanded');
+      toggleBtn.textContent = sidebar.classList.contains('expanded') ? '▲' : '☰';
+    });
+  }
+});
+
+function updateClock() {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString('id-ID', { hour12: false });
+  const clock = document.getElementById('live-clock');
+  if (clock) clock.textContent = timeString;
 }
+setInterval(updateClock, 1000);
+updateClock();
+document.addEventListener("DOMContentLoaded", () => {
+
+  let visitCount = localStorage.getItem('visitCount');
+
+  if (!visitCount) {
+    visitCount = 1;
+  } else {
+    visitCount = parseInt(visitCount, 10) + 1;
+  }
+
+  localStorage.setItem('visitCount', visitCount);
+
+  const visitDisplay = document.getElementById('visit-count');
+  if (visitDisplay) {
+    visitDisplay.textContent = visitCount.toLocaleString('id-ID');
+  }
+});

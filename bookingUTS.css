@@ -9,7 +9,7 @@ body {
 
 .form-container {
   background: white;
-  padding: 30px;
+  padding: 40px 30px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   width: 400px;
@@ -52,10 +52,22 @@ input:focus, select:focus {
   border-radius: 5px;
   cursor: pointer;
   font-family: 'Cormorant Garamond', serif;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .btn:hover {
   background: #d4af37;
   color: #2f3e34;
+}
+
+.back-btn {
+  text-align: center;
+  padding: 10px; 
+  border-radius: 5px;
+  border: none;
+  width: 100%; 
+  box-sizing: border-box;
+  margin-top: 5px; 
 }
